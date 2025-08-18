@@ -1,0 +1,60 @@
+I will be documenting my general notes  and thought process about this project here
+I am making a budget tracker app (Must include name)
+I am must also include purpose
+Make this txt file prettier
+Should i work with only one currency? or just numbers 
+Should my app prompt the user a lot of times?
+Should i include a welcome message ?
+
+Some of the required features include:
+• Add income and expense entries 
+• View a summary of total income, expenses, and balance 
+• Save and load transactions from a file 
+• Search for a specific transaction by date or keyword 
+
+My app will be ideal for a user with a monthly income
+The expense entries will include:
+• Tax bracket- I will use the percentage given to deduct the taxes. #
+             - Should only be in percentage form (error checking)
+• Fixed expenses- They include rent, electricity, waterbills, monthly shopping, fuel #
+                - I should ask the user if they have this fixed expenses and any other
+• Daily spendings- They include food, transport and emergency money, all these is input from the user
+
+From the data given,i should be able to return a summary of:
+• Total income
+• Tax deducted
+• Total amount of fixed expenses
+• Total amount of daily spendings per month
+• balance
+
+From the balance, I will ask the user if they may be interested in a budgeting plan in order to save money
+I will be using two methods as it is much simpler
+Budgeting plans include:
+• 50/30/20 rule - 50% of income goes to fixed expenses, 30% to variable expenses and daily spendings and 20% to savings 
+• Custom threshold - Where the user get to say how much to save.
+                   - There are 3 cases: 1.fixed (eg I want to save 20dollars)
+                                        2.income percentage (eg I want to save 15% of my income)
+                                        3.disposable percentage (eg i want to save 5% of whats left after expenses)
+Depending on the budgeting plan, the app should return the savings for that month
+
+Since we will be saving and loading transactions, we will be saving files per month
+What is being saved in files:
+• a detailed summary of income and expenses including if the user pays rent and such
+• budgeting plan the user choose and what it entails 
+• monthly savings
+
+I am unsure of how i will search transcations by date...by keyword seems easier
+
+An additional feature i might have is to predict how much the user can save annually
+Maybe also give a review on the savings, if they did a good job or if they need to improve 
+
+The following Core Python Concepts must be utilized in my app
+• Variables & Data Types (strings, integers, floats, booleans) 
+• Operators (arithmetic, comparison, logical) 
+• Control Flow (if/elif/else, for and while loops) 
+• Functions (with parameters and return values) 
+• Data Structures: Lists, Dictionaries, Sets, Tuples 
+• File I/O: Read from and write to text files (for saving user data) 
+• Error Handling: Use try/except to handle user input errors or file issues
+
+can i write different python scripts
