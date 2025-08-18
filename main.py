@@ -7,12 +7,17 @@ def get_budget_month():
         else:
             print("Invalid input. Please enter a valid month name.")
 
+budget_month = get_budget_month()
+
 
 # Get the user's monthly income using a function
 def get_monthly_income():
     while True:
+        monthly_income_str = input("Enter your monthly income (default 0): ")
+        if not monthly_income_str:
+            return 0.0
         try:
-            monthly_income = float(input("Enter your monthly income: "))
+            monthly_income = float(monthly_income_str)
             return monthly_income
         except ValueError:
             print("Invalid input. Please enter a number like 12000 or 12000.50.")
@@ -45,17 +50,17 @@ after_tax = get_tax_rate()
 # Get fixed monthly expenses
 fixed_expenses = {}
 expense_types = ["rent", "electricity", "water", "shopping", "fuel"]
+print("Enter your monthly fixed expenses (leave blank if not applicable):")
 
 for expense in expense_types:
-    has_expense = (input(f"Do you pay for {expense}? (yes/no): ").strip().lower() == "yes")
-    if has_expense:
-        while True:
-            try:
-                amount = float(input(f"Enter your monthly {expense} expense: "))
-                fixed_expenses[expense] = amount
-                break
-            except ValueError:
-                print("Please enter a valid number.")
+    amount_str = input(f"{expense.capitalize()}: ")
+    try:
+        amount = float(amount_str) if amount_str else 0.0
+        if amount > 0:
+            fixed_expenses[expense] = amount
+    except ValueError:
+        print("Invalid input, skipping.")
+   
 
 # To get additional  fixed monthly expenses
 add_more = (input("Do you have any other fixed expenses? (yes/no): ").strip().lower() == "yes")
@@ -68,24 +73,30 @@ while add_more:
             break
         except ValueError:
             print("Please enter a valid number.")
-    add_more = input("Add another fixed expense? (yes/no): ").strip().lower()
+    # Ask if the user wants to add more expenses
+    add_more = (input("Add another fixed expense? (yes/no): ").strip().lower() == "yes")
 
 # Calculate total fixed monthly expenses
 total_fixed_expenses = sum(fixed_expenses.values()) 
 
 # Get an estimate of daily spendings and a description using a function
 def daily_spending_estimate():
-    while True:
-        try:
-            daily_spending = float(input("Approximately how much do you spend daily? "))
-            return daily_spending
-        except ValueError:
-            print("Invalid input. Please enter a number.")
-
-daily_spending = daily_spending_estimate()
-
-# Ask for description
-description = input("Can you describe what you usually spend that on? (e.g., food, transport, etc.): ")
+    daily_spending_str = input("How much do you spend daily and on what? (e.g., 300 food/transport): ")
+    if not daily_spending_str:
+        return 0.0, ""
+    # Split the input into parts to separate amount and description
+    parts = daily_spending_str.split()
+    if parts:
+     try:
+        daily_spending = float(parts[0])
+        description = " ".join(parts[1:]) if len(parts) > 1 else ""
+     except ValueError:
+        daily_spending = 0.0
+        description = ""
+    return daily_spending, description
+   
+   
+daily_spending, description = daily_spending_estimate()
 
 # Get total monthly daily expenses
 total_daily_expenses = daily_spending * 30  # Approximate a month as 30 days
@@ -95,7 +106,7 @@ disposable_income = after_tax - total_fixed_expenses - total_daily_expenses
 
 # Display the budget summary
 print("\n--- Budget Summary ---")
-print(f"Month: {get_budget_month()}")
+print(f"Month: {budget_month}")
 print(f"Monthly Income: {monthly_income:.2f}")
 print(f"Monthly Income (after tax): {after_tax:.2f}")
 print(f"Total Fixed Expenses: {total_fixed_expenses:.2f}")
@@ -132,12 +143,12 @@ elif choice == "2":
             print("Invalid input. Please enter a number.")
 
 # Inform the user that we will store the budget data in a file
-print(f"\nYour budget data will be stored in '{get_budget_month()}_budget_summary.txt'.")
+print(f"\nYour budget data will be stored in '{budget_month}_budget_summary.txt'.")
 
 # Save the budget summary to a text file
-with open(f"{get_budget_month()}_budget_summary.txt", "w") as file:
+with open(f"{budget_month}_budget_summary.txt", "w") as file:
     file.write("--- Budget Summary ---\n")
-    file.write(f"Month: {get_budget_month()}\n")
+    file.write(f"Month: {budget_month}\n")
     file.write(f"Monthly Income: {monthly_income:.2f}\n")
     file.write(f"Monthly Income (after tax): {after_tax:.2f}\n")
     file.write("Fixed Expenses Breakdown:\n")
