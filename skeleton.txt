@@ -57,4 +57,9 @@ The following Core Python Concepts must be utilized in my app
 • File I/O: Read from and write to text files (for saving user data) 
 • Error Handling: Use try/except to handle user input errors or file issues
 
-can i write different python scripts
+python scripts
+1. main.py - connects all the scripts and includes welcome message 
+2. transactions.py - gets monthly income and expenses from the user
+3. savings.py - explains the savings plans
+4. file.py - saving and loading transactions
+
