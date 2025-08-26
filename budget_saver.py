@@ -1,40 +1,60 @@
-# This scripts aids in saving the budget summary in a txt file
+# This scripts aids in saving the budget summary in a csv file
 # I used a function in order to call it in my main file and make the code cleaner
-def save_budget_summary(budget_month, monthly_income, after_tax, fixed_expenses, total_fixed_expenses, total_daily_expenses, description, disposable_income, choice, savings):
-    with open(f"{budget_month}_budget_summary.txt", "w") as file:
-        file.write("--- Budget Summary ---\n")
-        file.write(f"Month: {budget_month}\n")
-        file.write(f"Monthly Income: {monthly_income:.2f}\n")
-        file.write(f"Monthly Income (after tax): {after_tax:.2f}\n")
-        file.write("Fixed Expenses Breakdown:\n")
-        for name, amount in fixed_expenses.items():
-            file.write(f"  {name}: {amount:.2f}\n")
-        file.write(f"Total Fixed Expenses: {total_fixed_expenses:.2f}\n")
-        file.write(f"Daily Spending Description: {description}\n")
-        file.write(f"Approximate Daily Expenses for the month: {total_daily_expenses:.2f}\n")
-        file.write(f"Disposable Income: {disposable_income:.2f}\n")
-        file.write(f"Savings Plan: {choice}\n")
-        if choice == "1":
-            file.write(f"50/30/20 Plan - Savings: {savings:.2f}\n")
-        elif choice == "2":
-            file.write(f"Fixed Custom Threshold Plan - Savings: {savings:.2f}\n")
 
-print("Budget summary saved successfully.")
+# Import csv to aid in writing CSV files
+import csv
 
-# To load transactions in a file
-def load_transactions(file_path):
-    transactions = []
+# Import date to add the timestamp feature to my csv files
+from datetime import date
+
+def save_budget_summary(budget_month, monthly_income, after_tax,
+                         fixed_expenses, total_fixed_expenses, 
+                         daily_spending, total_daily_expenses, description,
+                         disposable_income, savings_type, savings_amount):
+    
+    filename = f"{budget_month}_budget_summary.csv"
+    today = date.today().isoformat() # Format the date as YYYY-MM-DD
+
     try:
-        with open(file_path, "r") as file:
-            for line in file:
-                # Assuming each line is a transaction in the format "amount description"
-                parts = line.strip().split(" ", 1)
-                if len(parts) == 2:
-                    amount = float(parts[0])
-                    description = parts[1]
-                    transactions.append((amount, description))
-    except FileNotFoundError:
-        print(f"File not found: {file_path}")
+        with open(filename, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+
+            # Vertical summary section
+            writer.writerow(["Budget Summary"])
+            writer.writerow([f"Generated on: {today}"])
+
+            writer.writerow(["Field", "Value"])
+
+            writer.writerow(["Month", budget_month])
+            writer.writerow(["Monthly Income", f"{monthly_income:.2f}"])
+            writer.writerow(["After Tax Income", f"{after_tax:.2f}"])
+            writer.writerow(["Total Fixed Expenses", f"{total_fixed_expenses:.2f}"])
+            writer.writerow(["Total Daily Expenses", f"{total_daily_expenses:.2f}"])
+            writer.writerow(["Disposable Income", f"{disposable_income:.2f}"])
+
+            # Savings details
+            writer.writerow([])
+            writer.writerow(["Savings Summary"])
+            writer.writerow(["Savings Type", savings_type])
+            writer.writerow(["Savings Amount", f"{savings_amount:.2f}"])
+
+            # Fixed expenses breakdown
+            writer.writerow([])
+            writer.writerow(["Fixed Expenses Breakdown"])
+            writer.writerow(["Name", "Amount"])
+            for name, amount in fixed_expenses.items():
+                writer.writerow([name.strip().title(), f"{amount:.2f}"])
+
+            # Daily spending description
+            writer.writerow([])
+            writer.writerow(["Daily Spending Description"])
+            writer.writerow([description.strip(), daily_spending])
+
+            # Footer
+            writer.writerow([])
+            writer.writerow(["Thank you for using BudgetBuddy 💖!"])
+
+        print(f"Budget summary saved successfully to {filename}")
+
     except Exception as e:
-        print(f"Error loading transactions: {e}")
-    return transactions
+        print(f"Error saving CSV: {e}")
