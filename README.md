@@ -30,22 +30,22 @@ The app is also designed to encourage the users by analyzing their savings amoun
 Displays a welcome message and a randomly selected financial quotes at the beginning to set a positive tone. It also encourages user with savings messages based on their progress.
 - **Income & Expense Input**
 
-Collects detailed financial data including monthly income, tax rate, fixed expenses and daily spending via `input_handler.py`.
+Collects detailed financial data including monthly income, tax rate, fixed expenses and daily spending via [input_hanlder.py](scripts/input_handler.py).
 - **Smart Savings Suggestions**
 
-Recommends savings strategies based on disposabe income. Offers auto-suggestions for high earners and flexible plans for others via [savings.py](scripts/savings.py)`savings.py`.
+Recommends savings strategies based on disposabe income. Offers auto-suggestions for high earners and flexible plans for others via [savings.py](scripts/savings.py).
 - **Income Distribution Visualization**
 
-Displays a terminal-based bar chart and saves a PNG chart showing how income is allocated across catergories via `progress_chart.py`
+Displays a terminal-based bar chart and saves a PNG chart showing how income is allocated across catergories via [progress_chart.py](scripts/progress_chart.py).
 - **Annual Savings Prediction**
 
-Analyzes past CSV summaries to estimate yearly savings based on historical behavior via `predict_savings.py`
+Analyzes past CSV summaries to estimate yearly savings based on historical behavior via [predict_savings.py](scripts/predict_savings.py).
 - **Dynamic File Saving**
 
-Automatically saves budget data via `budget_saver.py` in CSV files in organized folders for easy tracking.
+Automatically saves budget data via [budget_saver.py](scripts/budget_saver.py) in CSV files in organized folders for easy tracking.
 - **Modular Design**
 
-Clean organized codebase with reusable modules(`main.py`, `input_handler.py`, `savings.py`, etc.) for clarity and maintainability.
+Clean organized codebase with reusable modules([main.py](scripts/main.py), [input_handler](scripts/input_handler.py) etc.) for clarity and maintainability.
 
 ---
 ### ✨Installation
@@ -170,5 +170,4 @@ Feel free to reach out with ideas, feedback, or questions- Let's build something
 ---
 
 > “Empower users. Celebrate progress. Code with heart.” ✨
-
 Made with ❤️ by Elma
