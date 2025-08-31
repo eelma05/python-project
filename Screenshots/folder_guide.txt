@@ -1,0 +1,8 @@
+This folder contains screenshots used in the README file of BudgetBuddy.
+
+These images showcase:
+- App interface and features
+- Example charts and CSV outputs
+- Installation steps and usage flow
+
+Screenshots are manually curated to help users understand the app at a glance.
