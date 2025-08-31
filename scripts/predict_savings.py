@@ -6,7 +6,7 @@ import os # Used for folder navigation and building file paths
 import time # Used to simulate loading time
 
 # Define the folder path containing CSV files
-folder_path = "C:\\Users\\5300\\OneDrive\\Desktop\\Project\\csv_reports"
+folder_path = "C:\\Users\\5300\\OneDrive\\Desktop\\Project\\scripts\\csv_reports"
 
 # Function to get all CSV files in the folder and return them in a list
 def get_csv_files(folder_path, min_required=3):
